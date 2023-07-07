@@ -22,7 +22,7 @@ public class EditServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-EntityManager em = DBUtil.createEntityManager();
+    EntityManager em = DBUtil.createEntityManager();
 
 	Tasks m = em.find(Tasks.class, Integer.parseInt(request.getParameter("id")));
 	em.close();
@@ -30,7 +30,7 @@ EntityManager em = DBUtil.createEntityManager();
 	request.setAttribute("tasks", m);
 	request.setAttribute("_token", request.getSession().getId());
 
-	request.getSession().setAttribute("tasks", m.getId());
+	request.getSession().setAttribute("tasks_id", m.getId());
 
 	RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/tasks/edit.jsp");
 	rd.forward(request, response);
